@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Match</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+  <!-- Jquery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      console.log("ready!");
+      $.get("/api/friends", function (data) {
+
+        let yourBestie;
+
+        for (let index = 0; index < data.length; index++) {
+          const element = data[index];
+          let match = element.isBestMatch;
+          if (match === true) {
+            console.log(element)
+            yourBestie = element
+          }
+        }
+
+
+        console.log(`Your bestie is ${yourBestie.name} and the img links is ${yourBestie.imglink}`)
+        $("#bestMatchName").text(yourBestie.name)
+        $('#bestMatchImg').attr("src", yourBestie.imglink);
+      }, "json");
+
+    });
+  </script>
+
+  <section class="hero is-dark is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title"> May we introduce you to <span id="bestMatchName"></span>
+        </h1>
+        <img id="bestMatchImg" src="" alt="">
+      </div>
+    </div>
+
+    <div class="hero-foot ">
+      <nav class="tabs ">
+        <div class="container ">
+          <ul>
+            <li><a href="/api/friends">API Friends List</a></li>
+            <li><a href="https://github.com/CopperCo/WannaBeFriends"><i class="fab fa-github " style="padding-right: 5px "></i>
+                GitHub</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </section>
+
+
+
+
+
+
+
+</body>
+
+</html>

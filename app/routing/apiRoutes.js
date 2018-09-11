@@ -16,33 +16,46 @@ module.exports = function(app) {
 
     function bestie(currentUser) {
       const reducer = (accumulator, currentValue) => accumulator + currentValue;
-      let maxDiff = 0;
+      let maxDiff = 40;
 
       let currTotalScore = currentUser.scores.reduce(reducer);
       console.log(`${currentUser.name} score is ${currTotalScore}`);
 
+      let bestMatch = null;
+      let bestMatchScore = 41;
       friendsData.forEach(element => {
         if (currentUser.name != element.name) {
-          let totalDiff = 0;
-          let potential = element.scores.reduce(reducer);
-          console.log(`${element.name} score is ${potential}`);
-
-          let diff = currTotalScore - potential;
-          console.log(diff);
-
-          totalDiff = totalDiff + diff;
-
-          if (totalDiff <= maxDiff) {
-            winningFriend = element;
-            maxDiff = totalDiff;
+          var totalDiff = 0;
+          // let potential = element.scores.reduce(reducer);
+          // console.log(`${element.name} score is ${potential}`);
+          for (
+            var scoreIndex = 0;
+            scoreIndex < element.scores.length;
+            scoreIndex++
+          ) {
+            let diff = Math.abs(
+              currentUser.scores[scoreIndex] - element.scores[scoreIndex]
+            );
+            totalDiff = totalDiff + diff;
           }
-          return winningFriend;
+          if (totalDiff <= maxDiff) {
+            if (totalDiff < bestMatchScore) {
+              bestMatch = element;
+              bestMatchScore = totalDiff;
+              element.isBestMatch = true;
+            }
+          }
         }
       });
+      return bestMatch;
     }
 
     let bestFriend = bestie(currentUser);
     console.log(bestFriend);
+
+    app.get("/match", function(req, res) {
+      return res.json(bestMatch);
+    });
 
     // Clear data for friendsData
     app.post("/api/clear", function() {

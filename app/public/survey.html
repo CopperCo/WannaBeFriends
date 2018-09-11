@@ -20,7 +20,7 @@
     </div>
   </section>
 
-  <section style="background: #f5f5f5" class="survey">
+  <section style="background: #f5f5f5" class="survey" id="questionForm">
     <div class="container">
       <br>
       <h3 class="subtitle is-3">About You</h3>
@@ -292,8 +292,8 @@
             <div class="field-body">
               <div class="field">
                 <div class="control">
-                  <button style="margin-bottom: 55px" class="button is-primary" id="submit">
-                    Find My Friend
+                  <button style="margin-bottom: 55px" class="button is-primary" id="submit"><a href="/match">Find My
+                      Friend</a>
                   </button>
                 </div>
               </div>
@@ -304,6 +304,28 @@
 
     </div>
   </section>
+
+  <!-- MATCH CARD -->
+  <section class="yourIdealMatch">
+    <div class="container">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img id="matchFriendImg" src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4" id="matchFriendName">NAME</p>
+              <p class="subtitle is-6" id="matchFriendName">emails</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
   <!-- Results Modal -->
   <div id="resultsModal" class="modal">
@@ -342,41 +364,123 @@
 
 
   <script type="text/javascript">
-    // Create an object for the user's data
-    $('#submit').on('click', function (event) {
-      event.preventDefault();
-      //Makes an array of the values of the selected options
-      let userScoresArray = [];
+    $(document).ready(function () {
+      $('.yourIdealMatch').hide();
+      console.log(`Its Alive`);
 
-      $('.user-choice option:selected').each(function () {
-        //Use + for type coercion to convert the number strings to INT numbers
-        userScoresArray.push(parseInt($(this).val()));
+      // Submit Form
+      $('#submit').on('click', function (event) {
+        event.preventDefault();
+        //Makes an array from the users values
+        let userScoresArray = [];
+
+        $('.user-choice option:selected').each(function () {
+          //Convert the number strings to INT numbers
+          userScoresArray.push(parseInt($(this).val()));
+        });
+        console.log(`User scores ${userScoresArray}`)
+        let userProfile = {
+          name: $("#name").val(),
+          imgLink: $("#img").val(),
+          scores: userScoresArray
+        };
+        console.log(`User Profile: ${userProfile.name}, ${userProfile.imgLink}, ${userProfile.scores}`)
+
+        // Use AJAX to post the data to the friends API. 
+        $.ajax("/api/friends", {
+          data: JSON.stringify(userProfile),
+          contentType: "application/json",
+          type: "POST"
+        }).then(function () {
+          console.log(`Posted the data!`)
+        });
+        location.href = "/match";
       });
-      console.log(`User scores ${userScoresArray}`)
-      let userProfile = {
-        name: $("#name").val(),
-        imgLink: $("#img").val(),
-        scores: userScoresArray
-      };
-      console.log(`User Profile: ${userProfile.name}, ${userProfile.imgLink}, ${userProfile.scores}`)
 
-      const reducer = (accumulator, currentValue) => accumulator + currentValue;
-      console.log(`User Score: ${userScoresArray.reduce(reducer)}`);
+      $(document).on('submit', '#questionForm', function () {
 
-      // Use AJAX to post the data to the friends API. 
-      let url = "http://localhost:3000/api/friends"
+        function findYourIdealBestie() {
+          $.get("/api/friends", function (data) {
 
-      $.ajax("/api/friends", {
-        data: JSON.stringify(userProfile),
-        contentType: "application/json",
-        type: "POST"
-      }).done(function () {
-        $("#matchFriendName").text(data.name);
-        $('#matchFriendImg').attr("src", data.photo);
-        // Show the modal with the best match 
-        $("#resultsModal").modal('toggle');
+            let yourBestie;
+
+            for (let index = 0; index < data.length; index++) {
+              const element = data[index];
+              let match = element.isBestMatch;
+              if (match === true) {
+                console.log(element)
+                yourBestie = element
+              }
+            }
+
+
+            console.log(`Your bestie is ${yourBestie.name} and the img links is ${yourBestie.imglink}`)
+            $("#bestMatchName").text(yourBestie.name)
+            $('#bestMatchImg').attr("src", yourBestie.imglink);
+          }, "json");
+        }
+        findYourIdealBestie();
+        $('.yourIdealMatch').show();
+
+        // $.get("/api/friends", function (data) {
+
+        //   let yourBestie;
+
+        //   for (let index = 0; index < data.length; index++) {
+        //     const element = data[index];
+        //     let match = element.isBestMatch;
+        //     if (match === true) {
+        //       console.log(element)
+        //       yourBestie = element
+        //     }
+        //   }
+
+
+        //   console.log(`Your bestie is ${yourBestie.name} and the img links is ${yourBestie.imglink}`)
+        //   $("#bestMatchName").text(yourBestie.name)
+        //   $('#bestMatchImg').attr("src", yourBestie.imglink);
+        // }, "json");
+
+
+
+
       });
     });
+
+
+
+
+
+    // Create an object for the user's data
+    // $('#submit').on('click', function (event) {
+    //   event.preventDefault();
+    //   //Makes an array of the values of the selected options
+    //   let userScoresArray = [];
+
+    //   $('.user-choice option:selected').each(function () {
+    //     //Use + for type coercion to convert the number strings to INT numbers
+    //     userScoresArray.push(parseInt($(this).val()));
+    //   });
+    //   console.log(`User scores ${userScoresArray}`)
+    //   let userProfile = {
+    //     name: $("#name").val(),
+    //     imgLink: $("#img").val(),
+    //     scores: userScoresArray
+    //   };
+    //   console.log(`User Profile: ${userProfile.name}, ${userProfile.imgLink}, ${userProfile.scores}`)
+
+    //   // Use AJAX to post the data to the friends API. 
+    //   $.ajax("/api/friends", {
+    //     data: JSON.stringify(userProfile),
+    //     contentType: "application/json",
+    //     type: "POST"
+    //   }).then(function () {
+    //     console.log(`Posted the data!`)
+    //   });
+
+
+
+    // });
   </script>
 
 </body>
