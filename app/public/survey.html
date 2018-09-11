@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wanna Be Friends Finder</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+</head>
+
+<body>
+
+  <section class="hero is-danger">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          <i class="far fa-thumbs-up"></i> Let's Find Your Match</h1>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: #f5f5f5" class="survey">
+    <div class="container">
+      <br>
+      <h3 class="subtitle is-3">About You</h3>
+      <div class="columns">
+        <div class="column is-four-fifths">
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Name</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded has-icons-left">
+                  <input id="name" class="input is-rounded" type="text" placeholder="Name">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field-label is-normal">
+                <label class="label">Image Link</label>
+              </div>
+              <div class="field">
+                <p class="control is-expanded has-icons-left has-icons-right">
+                  <input id="img" class="input is-success is-rounded" type="tezt" placeholder="yourphotolink.com">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-image"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+
+      </div>
+
+
+      <div class="columns ">
+        <div class="column is-four-fifths">
+          <!-- Question 1 -->
+          <div class="field is-horizontal">
+            <div class="field-label is-normal ">
+              <label class="  label">I love cats!</label>
+            </div>
+            <div class="field-body">
+              <div class="field is-narrow">
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select class="user-choice" id="q1">
+                      <option>1 (Strongly Disagree)</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5 (Strongly Agree)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class=" label">I hate dogs.</label>
+            </div>
+            <div class="field-body">
+              <div class="field is-narrow">
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select class="user-choice" id="q2">
+                      <option>1 (Strongly Disagree)</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5 (Strongly Agree)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class=" label">Sixteen Candles is a classic movie.</label>
+            </div>
+            <div class="field-body">
+              <div class="field is-narrow">
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select class="user-choice" id="q3">
+                      <option>1 (Strongly Disagree)</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5 (Strongly Agree)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 4 -->
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class=" label">I'd rather code all day then eat worms.</label>
+            </div>
+            <div class="field-body">
+              <div class="field is-narrow">
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select class="user-choice" id="q4">
+                      <option>1 (Strongly Disagree)</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5 (Strongly Agree)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 5 -->
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class=" label">I am an extrovert.</label>
+            </div>
+            <div class="field-body">
+              <div class="field is-narrow">
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select class="user-choice" id="q5">
+                      <option>1 (Strongly Disagree)</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5 (Strongly Agree)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 6 -->
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class=" label">I think Trump is good for America.</label>
+            </div>
+            <div class="field-body">
+              <div class="field is-narrow">
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select class="user-choice" id="q6">
+                      <option>1 (Strongly Disagree)</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5 (Strongly Agree)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 7 -->
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class=" label">I never have any good ideas...</label>
+            </div>
+            <div class="field-body">
+              <div class="field is-narrow">
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select class="user-choice" id="q7">
+                      <option>1 (Strongly Disagree)</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5 (Strongly Agree)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 8 -->
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class=" label">I love Express.js.</label>
+            </div>
+            <div class="field-body">
+              <div class="field is-narrow">
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select class="user-choice" id="q8">
+                      <option>1 (Strongly Disagree)</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5 (Strongly Agree)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 9 -->
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class=" label">In a movie, I'd be the villain.</label>
+            </div>
+            <div class="field-body">
+              <div class="field is-narrow">
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select class="user-choice" id="q9">
+                      <option>1 (Strongly Disagree)</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5 (Strongly Agree)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 10 -->
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class=" label">I need more friends.</label>
+            </div>
+            <div class="field-body">
+              <div class="field is-narrow">
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select class="user-choice" id="q10">
+                      <option>1 (Strongly Disagree)</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5 (Strongly Agree)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="field is-horizontal">
+            <div class="field-label">
+              <!-- Left empty for spacing -->
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <button style="margin-bottom: 55px" class="button is-primary" id="submit">
+                    Find My Friend
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Results Modal -->
+  <div id="resultsModal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Your Best Matched Friend is...</p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <h2 id="matchFriendName"></h2>
+        <img id="matchFriendImg" src="" alt="">
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button">Close</button>
+      </footer>
+    </div>
+  </div>
+
+  <footer style="background: #ebebeb" class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <a href="/api/friends">API Friends List</a> || <a href="https://github.com/CopperCo/WannaBeFriends"><i class="fab fa-github "
+            style="padding-right: 5px "></i>
+          GitHub</a> <br><br>
+        <strong>Wanna Be Friend Finder</strong> created by <a href="http://copperco.github.io">Hayley K.</a>
+
+      </p>
+    </div>
+  </footer>
+
+
+  <!-- Jquery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+
+
+  <script type="text/javascript">
+    // Create an object for the user's data
+    $('#submit').on('click', function (event) {
+      event.preventDefault();
+      //Makes an array of the values of the selected options
+      let userScoresArray = [];
+
+      $('.user-choice option:selected').each(function () {
+        //Use + for type coercion to convert the number strings to INT numbers
+        userScoresArray.push(parseInt($(this).val()));
+      });
+      console.log(`User scores ${userScoresArray}`)
+      let userProfile = {
+        name: $("#name").val(),
+        imgLink: $("#img").val(),
+        scores: userScoresArray
+      };
+      console.log(`User Profile: ${userProfile.name}, ${userProfile.imgLink}, ${userProfile.scores}`)
+
+      const reducer = (accumulator, currentValue) => accumulator + currentValue;
+      console.log(`User Score: ${userScoresArray.reduce(reducer)}`);
+
+      // Use AJAX to post the data to the friends API. 
+      let url = "http://localhost:3000/api/friends"
+      $.post(url, userProfile, function (data) {
+        console.log(`Posting: ${data}`);
+        $("#matchFriendName").text(data.name);
+        $('#matchFriendImg').attr("src", data.photo);
+        // Show the modal with the best match 
+        $("#resultsModal").modal('toggle');
+      });
+    });
+  </script>
+
+</body>
+
+</html>
