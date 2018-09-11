@@ -365,8 +365,12 @@
 
       // Use AJAX to post the data to the friends API. 
       let url = "http://localhost:3000/api/friends"
-      $.post(url, userProfile, function (data) {
-        console.log(`Posting: ${data}`);
+
+      $.ajax("/api/friends", {
+        data: JSON.stringify(userProfile),
+        contentType: "application/json",
+        type: "POST"
+      }).done(function () {
         $("#matchFriendName").text(data.name);
         $('#matchFriendImg').attr("src", data.photo);
         // Show the modal with the best match 
